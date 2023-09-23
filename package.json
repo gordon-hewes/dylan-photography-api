@@ -1,0 +1,48 @@
+{
+  "name": "node.js-project-template",
+  "version": "1.0.0",
+  "main": "./src/index.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start:dev": "nodemon ./src/index.js --exec babel-node",
+    "clean": "rm -rf build && mkdir build",
+    "build": "npm run clean && babel ./src -d ./build --copy-files",
+    "prestart": "npm run build && prisma migrate deploy",
+    "start": "node ./build/index.js"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
+  "prettier": {
+    "bracketSameLine": true,
+    "semi": false,
+    "singleQuote": true,
+    "jsxSingleQuote": false,
+    "bracketSpacing": true
+  },
+  "dependencies": {
+    "@babel/cli": "^7.22.15",
+    "@babel/preset-env": "^7.22.20",
+    "@prisma/client": "^5.3.1",
+    "axios": "^1.5.0",
+    "babel-plugin-module-resolver": "^5.0.0",
+    "bcrypt": "^5.1.1",
+    "compression": "^1.7.4",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "helmet": "^7.0.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "passport": "^0.6.0",
+    "passport-jwt": "^4.0.1",
+    "prisma": "^5.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.22.20",
+    "@babel/node": "^7.22.19",
+    "nodemon": "^3.0.1"
+  }
+}
